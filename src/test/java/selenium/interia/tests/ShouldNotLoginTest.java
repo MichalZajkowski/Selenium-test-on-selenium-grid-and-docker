@@ -22,7 +22,7 @@ public class ShouldNotLoginTest extends BaseTest {
     }
 
     @BeforeClass
-    public static void setUp(){
+    public static void setUp() {
         url = UrlProvider.INTERIA.getUrl();
         addressEmail = LoginDataProvider.DEPARTURE_CITY.getCityName();
         password = LoginDataProvider.ARRIVAL_CITY.getCityName();
@@ -38,12 +38,21 @@ public class ShouldNotLoginTest extends BaseTest {
     public void shouldNotLogin() {
         manager.formPage()
                 .loadPage(url);
+        System.out.println("load page");
         manager.formPage()
                 .enterAddressEmail(addressEmail);
+        System.out.println("input email");
+
         manager.formPage()
                 .enterPassword(password);
+        System.out.println("input passowrd");
+
         manager.formPage()
                 .clickLoginButton();
+        System.out.println("click login button");
+
         Assert.assertTrue(manager.formPage().errorMsgIsVisible());
+        System.out.println("asercja");
+
     }
 }

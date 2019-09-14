@@ -27,8 +27,8 @@ public class SeleniumGrid {
     public void runHub() {
         try {
             hub.start();
-        } catch (Exception ex) {
-            logger.error("Cannot establish Selenium Grid HUB ", ex);
+        } catch (Exception e) {
+            logger.error("Cannot establish Selenium Grid HUB ", e);
         }
     }
 

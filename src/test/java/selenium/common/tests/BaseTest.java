@@ -69,7 +69,7 @@ public class BaseTest {
             testOnGrid.runHub();
             testOnGrid.runNode();
             try {
-                TimeUnit.SECONDS.sleep(10); // needed for solve problem with Session expiring during execution ong grid
+                TimeUnit.SECONDS.sleep(20); // needed for solve problem with Session expiring during execution ong grid
             } catch (InterruptedException e) {
                 logger.error("Timeout corrupted! ", e);
             }
@@ -97,7 +97,7 @@ public class BaseTest {
 
     private void setRemoteDriver() {
         try {
-            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(new URL(REMOTE_HOST_URL), DesiredCapabilities.firefox());
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(new URL(REMOTE_HOST_URL), DesiredCapabilities.chrome());
             remoteWebDriver.setFileDetector(new LocalFileDetector());
             webDriver = remoteWebDriver;
         } catch (MalformedURLException e) {
