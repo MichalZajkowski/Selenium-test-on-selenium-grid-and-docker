@@ -16,7 +16,6 @@ public class ShouldNotLoginTest extends BaseTest {
     private static String password;
     private PageObjectGoogleFlightsManager manager;
 
-
     public ShouldNotLoginTest() {
         manager = new PageObjectGoogleFlightsManager(webDriver);
     }
@@ -38,21 +37,14 @@ public class ShouldNotLoginTest extends BaseTest {
     public void shouldNotLogin() {
         manager.formPage()
                 .loadPage(url);
-        System.out.println("load page");
         manager.formPage()
                 .enterAddressEmail(addressEmail);
-        System.out.println("input email");
-
         manager.formPage()
                 .enterPassword(password);
-        System.out.println("input passowrd");
-
         manager.formPage()
                 .clickLoginButton();
-        System.out.println("click login button");
-
-        Assert.assertTrue(manager.formPage().errorMsgIsVisible());
-        System.out.println("asercja");
-
+        Assert.assertTrue(
+                manager.formPage().errorMsgIsVisible()
+        );
     }
 }

@@ -15,9 +15,6 @@ public class Configuration {
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static Configuration instance = null;
 
-    private Configuration() {
-    }
-
     public static Configuration getInstance() {
         if (instance == null) {
             instance = new Configuration();

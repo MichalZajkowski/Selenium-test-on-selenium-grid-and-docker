@@ -97,7 +97,7 @@ public class BaseTest {
 
     private void setRemoteDriver() {
         try {
-            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(new URL(REMOTE_HOST_URL), DesiredCapabilities.chrome());
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(new URL(REMOTE_HOST_URL), DesiredCapabilities.firefox());
             remoteWebDriver.setFileDetector(new LocalFileDetector());
             webDriver = remoteWebDriver;
         } catch (MalformedURLException e) {
