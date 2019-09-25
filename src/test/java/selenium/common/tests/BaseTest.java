@@ -4,10 +4,7 @@ import framework.grid.SeleniumGrid;
 import framework.tools.utils.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -23,8 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    private static final String DRIVER = "driver";
     private static Configuration configuration = Configuration.getInstance();
+    private static final String DRIVER = "driver";
     private static final String REMOTE_HOST_URL = configuration.getPropertyFromFile("remoteHostURL");
     private static Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private static SeleniumGrid testOnGrid = new SeleniumGrid();
@@ -36,11 +33,10 @@ public class BaseTest {
             setDriver();
         } catch (InvalidParameterException | IOException e) {
             logger.warn("Missing 'driver' property. Set driver to default");
-            Configuration.setProperty(DRIVER, "chrome");
+            Configuration.setProperty(DRIVER, "firefox");
             Configuration.setProperty("webdriver.gecko.driver", configuration.getPropertyFromFile("geckoDriver"));
             webDriver = new FirefoxDriver();
-        }
-        finally {
+        } finally {
             if (!"remote".equals(Configuration.getProperty(DRIVER))) {
                 Objects.requireNonNull(webDriver).manage().window().maximize();
             }
@@ -69,7 +65,7 @@ public class BaseTest {
             testOnGrid.runHub();
             testOnGrid.runNode();
             try {
-                TimeUnit.SECONDS.sleep(20); // needed for solve problem with Session expiring during execution ong grid
+                TimeUnit.SECONDS.sleep(5);
             } catch (InterruptedException e) {
                 logger.error("Timeout corrupted! ", e);
             }

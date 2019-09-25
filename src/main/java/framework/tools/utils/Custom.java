@@ -42,21 +42,17 @@ public class Custom {
     }
 
     public void clearAndSendKey(final WebElement element, final String text) {
-        try {
-            element.clear();
-            element.sendKeys(text);
-        } catch (Throwable ex) {
-            logger.error("Clear and send key to element error: ", ex);
-        }
+        element.clear();
+        element.sendKeys(text);
     }
 
     public void clickElement(final WebElement element, int defaultTimeoutInSec) {
         try {
             element.wait(defaultTimeoutInSec);
-            element.click();
-        } catch (Throwable ex) {
-            logger.error("No such element found error: ", ex);
+        } catch (Exception ex) {
+            //no-op
         }
+        element.click();
     }
 
     public boolean isElementPresent(final By locator) {
