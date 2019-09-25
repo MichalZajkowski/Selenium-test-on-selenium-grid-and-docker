@@ -1,7 +1,0 @@
-selenium/common/utils/PageObjectGoogleFlightsManager.class
-selenium/common/tests/BaseTest.class
-selenium/google/tests/GoogleFlightSearchTest.class
-selenium/common/pages/BasePage.class
-selenium/google/pages/SearchFormPage.class
-selenium/google/pages/ArrivalFlightOptionsPage.class
-selenium/google/pages/DepartureFlightOptionsPage.class

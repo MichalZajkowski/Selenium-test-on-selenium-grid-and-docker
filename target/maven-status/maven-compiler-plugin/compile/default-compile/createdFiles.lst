@@ -1,5 +1,0 @@
-framework/grid/SeleniumGrid.class
-framework/tools/utils/Custom.class
-framework/tools/utils/UrlProvider.class
-framework/tools/utils/Configuration.class
-framework/tools/docker/DockerEnvironment.class
