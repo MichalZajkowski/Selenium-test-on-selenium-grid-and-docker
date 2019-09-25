@@ -2,16 +2,21 @@ package framework.tools.utils.dataprovider;
 
 public enum LoginDataProvider {
 
-    DEPARTURE_CITY("test@test.pl"),
-    ARRIVAL_CITY("testing");
+    USER_LOGIN_WITH_WRONG_DATA("test@test.pl", "testing");
 
-    private final String cityName;
+    private final String userEmailAddress;
+    private final String password;
 
-    LoginDataProvider(String cityName) {
-        this.cityName = cityName;
+    LoginDataProvider(String userEmailAddress, String password) {
+        this.userEmailAddress = userEmailAddress;
+        this.password = password;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getUserEmailAddress() {
+        return userEmailAddress;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

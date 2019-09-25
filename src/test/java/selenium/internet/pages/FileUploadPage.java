@@ -16,6 +16,7 @@ public class FileUploadPage extends BasePage<FileUploadPage> {
 
     @FindBy(id = "file-upload")
     private WebElement fileUploadController;
+
     @FindBy(id = "file-submit")
     private WebElement uploadButton;
 

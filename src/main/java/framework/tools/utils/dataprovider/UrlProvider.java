@@ -2,7 +2,7 @@ package framework.tools.utils.dataprovider;
 
 public enum UrlProvider {
 
-    INTERIA("https://poczta.interia.pl"),
+    ONET("https://konto.onet.pl/login.html"),
     DOCKER_INTERNET("http://localhost:5000");
 
     private final String url;

@@ -48,7 +48,7 @@ public class DockerEnvironment {
         ContainerCreation creation = dockerClient.createContainer(containerConfig);
         String id = creation.id();
         dockerClient.startContainer(id);
-        TimeUnit.SECONDS.sleep(30);
+        TimeUnit.SECONDS.sleep(10);
         return id;
     }
 

@@ -11,7 +11,7 @@ import selenium.internet.pages.PageObjectInternetManager;
 
 public class FileUploadTest extends BaseTest {
 
-    private static final String NAME_OF_FILE_FOR_UPLOAD = "test.html";
+    private static final String NAME_OF_FILE_FOR_UPLOAD = "uploadTest.html";
     private static final String PATH_TO_RESOURCE_FOR_UPLOAD = String.format("src/main/resources/%s", NAME_OF_FILE_FOR_UPLOAD);
     private static PageObjectInternetManager manager;
     private static String url;
@@ -28,7 +28,6 @@ public class FileUploadTest extends BaseTest {
     public void startUp() throws InterruptedException, DockerException, DockerCertificateException {
         containerId = dockerEnvironment.startDockerClient();
         url = UrlProvider.DOCKER_INTERNET.getUrl();
-        System.out.println(url);
     }
 
     @After
