@@ -5,14 +5,14 @@ import org.openqa.grid.internal.utils.SelfRegisteringRemote;
 import org.openqa.grid.internal.utils.configuration.GridHubConfiguration;
 import org.openqa.grid.internal.utils.configuration.GridNodeConfiguration;
 import org.openqa.grid.shared.GridNodeServer;
-import org.openqa.selenium.remote.server.SeleniumServer;
 import org.openqa.grid.web.Hub;
+import org.openqa.selenium.remote.server.SeleniumServer;
 
 public class SeleniumGrid {
 
-    private static Hub hub;
-    private static GridNodeServer node;
-    private static SelfRegisteringRemote remote;
+    private final Hub hub;
+    private final GridNodeServer node;
+    private final SelfRegisteringRemote remote;
 
     public SeleniumGrid() {
         RegistrationRequest registrationRequest = new RegistrationRequest(GridNodeConfiguration.loadFromJSON("selenium-grid-node-config.json"));

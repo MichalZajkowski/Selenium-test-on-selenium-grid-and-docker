@@ -10,7 +10,7 @@ import java.util.Properties;
 public class Configuration {
 
     private static final String FRAMEWORK_PROPERTIES = "framework.properties";
-    private static Configuration instance = null;
+    private static Configuration instance;
 
     public static Configuration getInstance() {
         if (instance == null) {
@@ -20,7 +20,7 @@ public class Configuration {
     }
 
     public static String getProperty(String key) {
-        final String property = System.getProperty(key);
+        String property = System.getProperty(key);
         if (property == null) {
             throw new InvalidParameterException(MessageFormat.format("Missing value for key '{0}'!", key));
         }
@@ -33,8 +33,7 @@ public class Configuration {
 
     public String getPropertyFromFile(String key) {
         Properties properties = new Properties();
-        InputStream inputStream;
-        inputStream = this.getClass().getClassLoader().getResourceAsStream(FRAMEWORK_PROPERTIES);
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(FRAMEWORK_PROPERTIES);
 
         try {
             properties.load(inputStream);

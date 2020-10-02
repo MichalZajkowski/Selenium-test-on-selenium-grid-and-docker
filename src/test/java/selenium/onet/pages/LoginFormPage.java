@@ -26,35 +26,6 @@ public class LoginFormPage extends BasePage<LoginFormPage> {
         super(webDriver);
     }
 
-    public LoginFormPage enterAddressEmail(String emailAddress) {
-        custom.clearAndSendKey(addressEmailInput, emailAddress);
-        return this;
-    }
-
-    public LoginFormPage enterPassword(String password) {
-        custom.clearAndSendKey(passwordInput, password);
-        return this;
-    }
-
-    public LoginFormPage clickLoginButton() {
-        custom.isElementVisible(loginButton);
-        custom.clickElement(loginButton, 5);
-        return this;
-    }
-
-    public LoginFormPage closeRodoMsgIfIsVisible(){
-        try{
-            custom.clickElement(rodoMsg, 5);
-        } catch (Exception e){
-            //no-op
-        }
-        return this;
-    }
-
-    public boolean errorMsgIsVisible() {
-        return custom.isElementVisible(errorMsg);
-    }
-
     @Override
     protected LoginFormPage getThis() {
         return this;
@@ -62,6 +33,34 @@ public class LoginFormPage extends BasePage<LoginFormPage> {
 
     @Override
     public boolean isLoaded() {
-        return custom.isElementVisible(addressEmailInput) && custom.isElementVisible(passwordInput);
+        return getCustom().isElementVisible(addressEmailInput) && getCustom().isElementVisible(passwordInput);
+    }
+
+    public LoginFormPage enterAddressEmail(String emailAddress) {
+        getCustom().clearAndSendKey(addressEmailInput, emailAddress);
+        return this;
+    }
+
+    public LoginFormPage enterPassword(String password) {
+        getCustom().clearAndSendKey(passwordInput, password);
+        return this;
+    }
+
+    public void clickLoginButton() {
+        getCustom().isElementVisible(loginButton);
+        getCustom().clickElement(loginButton, 5);
+    }
+
+    public LoginFormPage closeRodoMsgIfIsVisible(){
+        try{
+            getCustom().clickElement(rodoMsg, 5);
+        } catch (Exception e){
+            //no-op
+        }
+        return this;
+    }
+
+    public boolean errorMsgIsVisible() {
+        return getCustom().isElementVisible(errorMsg);
     }
 }

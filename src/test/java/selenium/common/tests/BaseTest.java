@@ -20,12 +20,12 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    private static Configuration configuration = Configuration.getInstance();
+    private static final Configuration configuration = Configuration.getInstance();
     private static final String DRIVER = "driver";
     private static final String REMOTE_HOST_URL = configuration.getPropertyFromFile("remoteHostURL");
-    private static Logger logger = LoggerFactory.getLogger(BaseTest.class);
-    private static SeleniumGrid testOnGrid = new SeleniumGrid();
-    private static boolean doesGridActive = Boolean.parseBoolean(configuration.getPropertyFromFile("localhostGridEnabled"));
+    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    private static final SeleniumGrid testOnGrid = new SeleniumGrid();
+    private static final boolean doesGridActive = Boolean.parseBoolean(configuration.getPropertyFromFile("localhostGridEnabled"));
     protected static WebDriver webDriver;
 
     protected BaseTest() {
@@ -43,20 +43,20 @@ public class BaseTest {
         }
     }
 
+    protected static void tearDownGridIfNeeded() {
+        if (doesGridActive) {
+            testOnGrid.stopNode();
+            testOnGrid.stopHub();
+            logger.info("Grid closed!");
+        }
+    }
+
     private void setDriver() throws InvalidParameterException, IOException {
         switch (Configuration.getProperty(DRIVER)) {
-            case "chrome":
-                setChromeDriver();
-                break;
-            case "firefox":
-                setGeckoDriver();
-                break;
-            case "remote":
-                setRemoteDriver();
-                break;
-            case "remoteOnLocalhost":
-                setRemoteOnLocalhost();
-                break;
+            case "chrome" -> setChromeDriver();
+            case "firefox" -> setGeckoDriver();
+            case "remote" -> setRemoteDriver();
+            case "remoteOnLocalhost" -> setRemoteOnLocalhost();
         }
     }
 
@@ -70,14 +70,6 @@ public class BaseTest {
                 logger.error("Timeout corrupted! ", e);
             }
             logger.info("Grid set up and ready for test processing!");
-        }
-    }
-
-    protected static void tearDownGridIfNeeded() {
-        if (doesGridActive) {
-            testOnGrid.stopNode();
-            testOnGrid.stopHub();
-            logger.info("Grid closed!");
         }
     }
 

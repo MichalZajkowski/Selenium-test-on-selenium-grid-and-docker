@@ -14,7 +14,7 @@ public class ShouldNotLoginTest extends BaseTest {
     private static String url;
     private static String addressEmail;
     private static String password;
-    private PageObjectOnetManager manager;
+    private final PageObjectOnetManager manager;
 
     public ShouldNotLoginTest() {
         manager = new PageObjectOnetManager(webDriver);

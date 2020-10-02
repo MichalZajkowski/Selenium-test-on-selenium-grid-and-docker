@@ -1,18 +1,14 @@
 package selenium.internet.pages;
 
-import framework.tools.utils.Custom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import selenium.common.pages.BasePage;
+
 import java.io.File;
 
 public class FileUploadPage extends BasePage<FileUploadPage> {
-
-    private static Logger logger = LoggerFactory.getLogger(Custom.class);
 
     @FindBy(id = "file-upload")
     private WebElement fileUploadController;
@@ -29,16 +25,19 @@ public class FileUploadPage extends BasePage<FileUploadPage> {
         return this;
     }
 
+    @Override
+    public boolean isLoaded() {
+        return getCustom().isElementVisible(fileUploadController);
+    }
+
     public FileUploadPage uploadFile(String filePath) {
-        File f = new File(filePath);
-        logger.info(f.getAbsoluteFile().toString());
-        fileUploadController.sendKeys(f.getAbsolutePath());
+        fileUploadController.sendKeys(new File(filePath).getAbsolutePath());
         return getThis();
     }
 
-    public FileUploadPage clickUpload() {
+    public void clickUpload() {
         uploadButton.click();
-        return getThis();
+        getThis();
     }
 
     public FileUploadPage makeUploadButtonScaled() {
@@ -48,11 +47,6 @@ public class FileUploadPage extends BasePage<FileUploadPage> {
 
     public boolean isFileUploaded(String fileName) {
         String fileUploadConfirmation = "//div[@id='uploaded-files' and contains(text(), '%s')]";
-        return custom.isElementPresent(By.xpath(String.format(fileUploadConfirmation, fileName)));
-    }
-
-    @Override
-    public boolean isLoaded() {
-        return custom.isElementVisible(fileUploadController);
+        return getCustom().isElementPresent(By.xpath(String.format(fileUploadConfirmation, fileName)));
     }
 }

@@ -21,7 +21,7 @@ public class MainPage extends BasePage<MainPage> {
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
-        custom = new Custom(webDriver);
+        init();
     }
 
     @Override
@@ -29,9 +29,14 @@ public class MainPage extends BasePage<MainPage> {
         return this;
     }
 
-    public MainPage clickUploadLink() {
+    @Override
+    public boolean isLoaded() {
+        return custom.isElementVisible(theInternetHeader);
+    }
+
+    public void clickUploadLink() {
         fileUploadLink.click();
-        return getThis();
+        getThis();
     }
 
     public MainPage clickDragAndDropLink() {
@@ -39,8 +44,7 @@ public class MainPage extends BasePage<MainPage> {
         return getThis();
     }
 
-    @Override
-    public boolean isLoaded() {
-        return custom.isElementVisible(theInternetHeader);
+    private void init(){
+        custom = new Custom(getWebDriver());
     }
 }

@@ -10,24 +10,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
-
 public class Custom {
 
     private static final int DEFAULT_TIMEOUT_IN_SEC = 10;
-    private static Logger logger = LoggerFactory.getLogger(Custom.class);
+    private static final Logger logger = LoggerFactory.getLogger(Custom.class);
     private final WebDriver webDriver;
 
     public Custom(WebDriver driver) {
         this.webDriver = driver;
-    }
-
-    private FluentWait<WebDriver> createFluentWait() {
-        return new WebDriverWait(webDriver, DEFAULT_TIMEOUT_IN_SEC);
-    }
-
-    private FluentWait<WebDriver> createWait() {
-        return createFluentWait().withTimeout(Duration.ofSeconds(Custom.DEFAULT_TIMEOUT_IN_SEC));
     }
 
     public boolean isElementVisible(final WebElement webElement) {
@@ -55,7 +45,7 @@ public class Custom {
         element.click();
     }
 
-    public boolean isElementPresent(final By locator) {
+    public boolean isElementPresent(By locator) {
         FluentWait<WebDriver> wait = createWait();
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -64,5 +54,9 @@ public class Custom {
             logger.error("Element not found: ", ex);
             return false;
         }
+    }
+
+    private FluentWait<WebDriver> createWait() {
+        return new WebDriverWait(webDriver, DEFAULT_TIMEOUT_IN_SEC);
     }
 }
